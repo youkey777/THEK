@@ -60,7 +60,6 @@ const mobileLinks = document.querySelectorAll(".mobile-menu a");
 
 hamburger.addEventListener("click", () => {
     mobileMenu.classList.toggle("active");
-    // Animate hamburger lines if needed, or just toggle class
 });
 
 // Scroll Animations
@@ -116,16 +115,7 @@ gsap.from(".story-text p", {
     ease: "power3.out"
 });
 
-gsap.from(".story-image", {
-    scrollTrigger: {
-        trigger: ".story-image",
-        start: "top 75%",
-    },
-    x: 50,
-    opacity: 0,
-    duration: 1,
-    ease: "power3.out"
-});
+// Note: .story-image animation removed as the image was removed
 
 gsap.utils.toArray(".time-slot").forEach((slot, i) => {
     gsap.from(slot, {
@@ -166,29 +156,42 @@ gsap.to(".hero-bg", {
 // Story Background Animation
 const storyBg = document.querySelector(".story-bg-anim");
 if (storyBg) {
-    for (let i = 0; i < 20; i++) {
+    // Clear existing particles if any
+    storyBg.innerHTML = '';
+
+    // Increase particle count for a richer effect
+    const particleCount = 50;
+
+    for (let i = 0; i < particleCount; i++) {
         const particle = document.createElement("div");
         particle.classList.add("particle");
         storyBg.appendChild(particle);
 
+        // Randomize size for depth
+        const size = Math.random() * 15 + 5; // 5px to 20px
+
         gsap.set(particle, {
             x: Math.random() * 100 + "%",
             y: Math.random() * 100 + "%",
-            scale: Math.random() * 0.5 + 0.5,
-            opacity: Math.random() * 0.5 + 0.2,
+            scale: Math.random() * 0.8 + 0.2,
+            opacity: Math.random() * 0.6 + 0.3, // Higher opacity
             position: "absolute",
-            width: "10px",
-            height: "10px",
-            backgroundColor: "#C5A059",
+            width: `${size}px`,
+            height: `${size}px`,
+            backgroundColor: "#C5A059", // Gold color
             borderRadius: "50%",
-            filter: "blur(5px)"
+            filter: `blur(${Math.random() * 3 + 2}px)`, // Soft glow
+            boxShadow: "0 0 10px 2px rgba(197, 160, 89, 0.4)" // Gold glow
         });
 
+        // Complex movement
         gsap.to(particle, {
-            y: "-=100",
-            x: "+=50",
-            rotation: 360,
-            duration: Math.random() * 10 + 10,
+            y: `+=${Math.random() * 200 - 100}`, // Move up or down
+            x: `+=${Math.random() * 200 - 100}`, // Move left or right
+            rotation: Math.random() * 360,
+            scale: Math.random() * 1.5 + 0.5, // Pulse size
+            opacity: Math.random() * 0.8 + 0.2, // Pulse opacity
+            duration: Math.random() * 15 + 10, // Slow, elegant movement
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut"
