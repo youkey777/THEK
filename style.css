@@ -722,8 +722,7 @@ h4 {
 
 .reviews-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
@@ -735,13 +734,7 @@ h4 {
   position: relative;
 }
 
-.review-card:first-child {
-  grid-row: span 2;
-}
-
-.review-card:first-child .review-image {
-  height: 400px;
-}
+/* すべてのレビューカードを同じサイズに統一 */
 
 .review-card:hover {
   transform: translateY(-10px);
@@ -750,7 +743,7 @@ h4 {
 
 .review-image {
   width: 100%;
-  height: 220px;
+  height: 250px;
   overflow: hidden;
   position: relative;
 }
@@ -1035,15 +1028,7 @@ h4 {
   }
 
   .reviews-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .review-card:first-child {
-    grid-row: auto;
-  }
-
-  .review-card:first-child .review-image {
-    height: 250px;
+    grid-template-columns: 1fr 1fr;
   }
 
   .plan::before {
@@ -1081,6 +1066,15 @@ h4 {
   body {
     overflow-x: hidden;
     width: 100%;
+  }
+
+  .hero {
+    padding-top: 0;
+    margin-top: 0;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
   }
 
   .header {
