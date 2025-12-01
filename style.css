@@ -481,42 +481,6 @@ h4 {
 .reviews-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
-  text-align: left;
-}
-
-.review-card {
-  background-color: #fff;
-  padding: 2rem;
-  border: 1px solid rgba(197, 160, 89, 0.2);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease;
-}
-
-.review-card:hover {
-  transform: translateY(-5px);
-}
-
-.review-text {
-  font-family: var(--font-serif-jp);
-  font-size: 1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  color: var(--color-text);
-}
-
-.review-author {
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: var(--color-gold);
-  text-align: right;
-  font-weight: 500;
-}
-
-/* Info */
-.info {
-  background-color: #F2F0EB;
 }
 
 .info-grid {

@@ -147,54 +147,205 @@ gsap.to(".hero-bg", {
         trigger: ".hero",
         start: "top top",
         end: "bottom top",
-        scrub: true
-    },
-    y: 200,
-    ease: "none"
-});
+        import { gsap } from "gsap";
+        import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Story Background Animation
-const storyBg = document.querySelector(".story-bg-anim");
-if (storyBg) {
-    // Clear existing particles if any
-    storyBg.innerHTML = '';
+        gsap.registerPlugin(ScrollTrigger);
 
-    // Increase particle count for a richer effect
-    const particleCount = 50;
+        // Loader
+        window.addEventListener("load", () => {
+            const tl = gsap.timeline();
 
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.classList.add("particle");
-        storyBg.appendChild(particle);
-
-        // Randomize size for depth
-        const size = Math.random() * 15 + 5; // 5px to 20px
-
-        gsap.set(particle, {
-            x: Math.random() * 100 + "%",
-            y: Math.random() * 100 + "%",
-            scale: Math.random() * 0.8 + 0.2,
-            opacity: Math.random() * 0.6 + 0.3, // Higher opacity
-            position: "absolute",
-            width: `${size}px`,
-            height: `${size}px`,
-            backgroundColor: "#C5A059", // Gold color
-            borderRadius: "50%",
-            filter: `blur(${Math.random() * 3 + 2}px)`, // Soft glow
-            boxShadow: "0 0 10px 2px rgba(197, 160, 89, 0.4)" // Gold glow
+            tl.to(".loader-text", {
+                opacity: 0,
+                duration: 1,
+                delay: 1,
+                ease: "power2.out"
+            })
+                .to(".loader", {
+                    height: 0,
+                    duration: 1,
+                    ease: "power4.inOut"
+                })
+                .from(".hero-title .line", {
+                    y: "100%",
+                    duration: 1.5,
+                    stagger: 0.2,
+                    ease: "power4.out"
+                }, "-=0.5")
+                .to(".hero-subtitle", {
+                    opacity: 1,
+                    y: 0,
+                    duration: 1,
+                    ease: "power2.out"
+                }, "-=1")
+                .to(".scroll-indicator", {
+                    opacity: 1,
+                    duration: 1
+                }, "-=1")
+                .to(".scroll-indicator .line", {
+                    scaleY: 1,
+                    duration: 1,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "power1.inOut"
+                }, "-=1");
         });
 
-        // Complex movement
-        gsap.to(particle, {
-            y: `+=${Math.random() * 200 - 100}`, // Move up or down
-            x: `+=${Math.random() * 200 - 100}`, // Move left or right
-            rotation: Math.random() * 360,
-            scale: Math.random() * 1.5 + 0.5, // Pulse size
-            opacity: Math.random() * 0.8 + 0.2, // Pulse opacity
-            duration: Math.random() * 15 + 10, // Slow, elegant movement
-            repeat: -1,
-            yoyo: true,
-            ease: "sine.inOut"
+        // Header Scroll Effect
+        window.addEventListener("scroll", () => {
+            const header = document.querySelector(".header");
+            if (window.scrollY > 50) {
+                header.classList.add("scrolled");
+            } else {
+                header.classList.remove("scrolled");
+            }
         });
-    }
-}
+
+        // Hamburger Menu
+        const hamburger = document.querySelector(".hamburger");
+        const mobileMenu = document.querySelector(".mobile-menu");
+        const mobileLinks = document.querySelectorAll(".mobile-menu a");
+
+        hamburger.addEventListener("click", () => {
+            mobileMenu.classList.toggle("active");
+        });
+
+        // Scroll Animations
+        gsap.utils.toArray(".section-title, .section-subtitle").forEach(target => {
+            gsap.from(target, {
+                scrollTrigger: {
+                    trigger: target,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        gsap.utils.toArray(".value-card").forEach((card, i) => {
+            gsap.from(card, {
+                scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 0.8,
+                delay: i * 0.2,
+                ease: "power3.out"
+            });
+        });
+
+        gsap.from(".concept-text-vertical p", {
+            scrollTrigger: {
+                trigger: ".concept-text-vertical",
+                start: "top 70%",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            stagger: 0.3,
+            ease: "power3.out"
+        });
+
+        gsap.from(".story-text p", {
+            scrollTrigger: {
+                trigger: ".story-text",
+                start: "top 75%",
+            },
+            y: 20,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Note: .story-image animation removed as the image was removed
+
+        gsap.utils.toArray(".time-slot").forEach((slot, i) => {
+            gsap.from(slot, {
+                scrollTrigger: {
+                    trigger: slot,
+                    start: "top 85%",
+                },
+                x: -30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out"
+            });
+        });
+        gsap.from(".step", {
+            scrollTrigger: {
+                trigger: ".flow-steps",
+                start: "top 80%",
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+
+        // Parallax Hero
+        gsap.to(".hero-bg", {
+            scrollTrigger: {
+                trigger: ".hero",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            y: 200,
+            ease: "none"
+        });
+
+        // Story Background Animation
+        const storyBg = document.querySelector(".story-bg-anim");
+        if(storyBg) {
+            // Clear existing particles if any
+            storyBg.innerHTML = '';
+
+            // Increase particle count for a richer effect
+            const particleCount = 40;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement("div");
+                particle.classList.add("particle");
+                storyBg.appendChild(particle);
+
+                // Randomize size for depth
+                const size = Math.random() * 20 + 10; // 10px to 30px
+
+                gsap.set(particle, {
+                    left: Math.random() * 100 + "%",
+                    top: Math.random() * 100 + "%",
+                    x: 0,
+                    y: 0,
+                    scale: Math.random() * 0.5 + 0.5,
+                    opacity: Math.random() * 0.3 + 0.1, // Lower opacity for readability (0.1 to 0.4)
+                    position: "absolute",
+                    width: `${size}px`,
+                    height: `${size}px`,
+                    backgroundColor: "#C5A059", // Gold color
+                    borderRadius: "50%",
+                    filter: `blur(${Math.random() * 5 + 3}px)`, // Soft glow
+                    boxShadow: "0 0 15px 5px rgba(197, 160, 89, 0.3)" // Gold glow
+                });
+
+                // Complex movement - floating across the screen
+                gsap.to(particle, {
+                    y: `+=${Math.random() * 300 - 150}`, // Move up or down
+                    x: `+=${Math.random() * 300 - 150}`, // Move left or right
+                    rotation: Math.random() * 360,
+                    scale: Math.random() * 1.2 + 0.8, // Pulse size
+                    opacity: Math.random() * 0.4 + 0.1, // Pulse opacity
+                    duration: Math.random() * 20 + 15, // Slow, elegant movement
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
+        }
