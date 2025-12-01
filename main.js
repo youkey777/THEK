@@ -175,6 +175,7 @@ gsap.to(".hero-bg", {
 // Story Background Animation
 const storyBg = document.querySelector(".story-bg-anim");
 if (storyBg) {
+    console.log("Story animation container found. Starting animation...");
     storyBg.innerHTML = ''; // Clear existing
 
     const particleCount = 60; // Increased count
@@ -202,16 +203,16 @@ if (storyBg) {
             position: "absolute",
             backgroundColor: "#C5A059",
             borderRadius: "50%",
-            filter: `blur(${Math.random() * 4 + 2}px)`,
-            boxShadow: "0 0 10px 2px rgba(197, 160, 89, 0.3)",
+            filter: `blur(${Math.random() * 2 + 1}px)`, // Reduced blur for better visibility
+            boxShadow: "0 0 10px 2px rgba(197, 160, 89, 0.5)", // Stronger glow
             opacity: 0,
             scale: 0
         });
 
         // Appearance Animation (Emerge)
         gsap.to(particle, {
-            opacity: Math.random() * 0.5 + 0.2, // Max 0.7 to keep text readable
-            scale: Math.random() * 0.5 + 0.5,
+            opacity: Math.random() * 0.6 + 0.3, // Increased opacity (0.3 - 0.9)
+            scale: Math.random() * 0.5 + 0.8, // Slightly larger
             duration: 2,
             delay: delay,
             ease: "power2.out"
@@ -232,7 +233,7 @@ if (storyBg) {
         // Pulse Animation (Subtle glow)
         gsap.to(particle, {
             opacity: "+=0.2",
-            scale: "+=0.2",
+            scale: "+=0.1",
             duration: Math.random() * 3 + 2,
             repeat: -1,
             yoyo: true,
@@ -240,4 +241,6 @@ if (storyBg) {
             delay: delay
         });
     }
+} else {
+    console.error("Story animation container (.story-bg-anim) NOT found!");
 }
