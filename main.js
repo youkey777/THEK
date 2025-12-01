@@ -172,75 +172,182 @@ gsap.to(".hero-bg", {
     ease: "none"
 });
 
-// Story Background Animation
+// Story Background Animation - Luxurious Golden Particles
 const storyBg = document.querySelector(".story-bg-anim");
 if (storyBg) {
-    console.log("Story animation container found. Starting animation...");
-    storyBg.innerHTML = ''; // Clear existing
+    storyBg.innerHTML = '';
 
-    const particleCount = 60; // Increased count
+    // Create multiple layers of animation elements
 
-    for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement("div");
-        particle.classList.add("particle");
-        storyBg.appendChild(particle);
+    // Layer 1: Floating golden orbs (large, slow)
+    for (let i = 0; i < 15; i++) {
+        const orb = document.createElement("div");
+        orb.classList.add("golden-orb");
+        storyBg.appendChild(orb);
 
-        // Random properties
-        const size = Math.random() * 15 + 5; // 5-20px
+        const size = Math.random() * 80 + 40; // 40-120px
         const xPos = Math.random() * 100;
         const yPos = Math.random() * 100;
-        const duration = Math.random() * 20 + 10;
-        const delay = Math.random() * 5;
+        const duration = Math.random() * 25 + 20;
+        const delay = Math.random() * 8;
 
-        // Initial State (Hidden)
-        gsap.set(particle, {
+        gsap.set(orb, {
             left: xPos + "%",
             top: yPos + "%",
             xPercent: -50,
             yPercent: -50,
             width: size,
             height: size,
-            position: "absolute",
-            backgroundColor: "#C5A059",
-            borderRadius: "50%",
-            filter: `blur(${Math.random() * 2 + 1}px)`, // Reduced blur for better visibility
-            boxShadow: "0 0 10px 2px rgba(197, 160, 89, 0.5)", // Stronger glow
-            opacity: 0,
-            scale: 0
+            opacity: 0
         });
 
-        // Appearance Animation (Emerge)
-        gsap.to(particle, {
-            opacity: Math.random() * 0.6 + 0.3, // Increased opacity (0.3 - 0.9)
-            scale: Math.random() * 0.5 + 0.8, // Slightly larger
-            duration: 2,
+        // Fade in
+        gsap.to(orb, {
+            opacity: Math.random() * 0.15 + 0.05,
+            duration: 3,
             delay: delay,
             ease: "power2.out"
         });
 
-        // Floating Animation (Continuous)
-        gsap.to(particle, {
-            x: `+=${Math.random() * 100 - 50}`,
+        // Floating movement
+        gsap.to(orb, {
+            x: `+=${Math.random() * 150 - 75}`,
             y: `+=${Math.random() * 100 - 50}`,
-            rotation: Math.random() * 360,
             duration: duration,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: delay // Sync with appearance
+            delay: delay
         });
 
-        // Pulse Animation (Subtle glow)
-        gsap.to(particle, {
-            opacity: "+=0.2",
-            scale: "+=0.1",
-            duration: Math.random() * 3 + 2,
+        // Subtle pulse
+        gsap.to(orb, {
+            scale: 1.2,
+            opacity: "+=0.05",
+            duration: Math.random() * 5 + 4,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
             delay: delay
         });
     }
-} else {
-    console.error("Story animation container (.story-bg-anim) NOT found!");
+
+    // Layer 2: Shimmer particles (small, fast)
+    for (let i = 0; i < 50; i++) {
+        const shimmer = document.createElement("div");
+        shimmer.classList.add("shimmer-particle");
+        storyBg.appendChild(shimmer);
+
+        const size = Math.random() * 4 + 2; // 2-6px
+        const xPos = Math.random() * 100;
+        const yPos = Math.random() * 100;
+        const duration = Math.random() * 8 + 5;
+        const delay = Math.random() * 10;
+
+        gsap.set(shimmer, {
+            left: xPos + "%",
+            top: yPos + "%",
+            xPercent: -50,
+            yPercent: -50,
+            width: size,
+            height: size,
+            opacity: 0
+        });
+
+        // Twinkle animation
+        gsap.to(shimmer, {
+            opacity: Math.random() * 0.8 + 0.2,
+            duration: Math.random() * 2 + 1,
+            delay: delay,
+            repeat: -1,
+            yoyo: true,
+            ease: "power1.inOut"
+        });
+
+        // Drift upward
+        gsap.to(shimmer, {
+            y: `-=${Math.random() * 200 + 100}`,
+            x: `+=${Math.random() * 60 - 30}`,
+            duration: duration,
+            repeat: -1,
+            ease: "none",
+            delay: delay
+        });
+    }
+
+    // Layer 3: Flowing lines (elegant streaks)
+    for (let i = 0; i < 8; i++) {
+        const line = document.createElement("div");
+        line.classList.add("flowing-line");
+        storyBg.appendChild(line);
+
+        const width = Math.random() * 150 + 100;
+        const yPos = Math.random() * 80 + 10;
+        const duration = Math.random() * 15 + 12;
+        const delay = Math.random() * 5;
+
+        gsap.set(line, {
+            left: "-20%",
+            top: yPos + "%",
+            width: width,
+            height: 1,
+            opacity: 0
+        });
+
+        // Sweep across
+        gsap.to(line, {
+            left: "120%",
+            opacity: 0.3,
+            duration: duration,
+            repeat: -1,
+            ease: "power1.inOut",
+            delay: delay,
+            onRepeat: () => {
+                gsap.set(line, { top: Math.random() * 80 + 10 + "%" });
+            }
+        });
+    }
+
+    // Layer 4: Diamond sparkles
+    for (let i = 0; i < 20; i++) {
+        const diamond = document.createElement("div");
+        diamond.classList.add("diamond-sparkle");
+        storyBg.appendChild(diamond);
+
+        const size = Math.random() * 10 + 5;
+        const xPos = Math.random() * 100;
+        const yPos = Math.random() * 100;
+        const delay = Math.random() * 15;
+
+        gsap.set(diamond, {
+            left: xPos + "%",
+            top: yPos + "%",
+            xPercent: -50,
+            yPercent: -50,
+            width: size,
+            height: size,
+            opacity: 0,
+            rotation: 45,
+            scale: 0
+        });
+
+        // Sparkle burst
+        const sparkleTimeline = gsap.timeline({ repeat: -1, delay: delay });
+        sparkleTimeline
+            .to(diamond, {
+                opacity: 0.9,
+                scale: 1,
+                duration: 0.3,
+                ease: "power2.out"
+            })
+            .to(diamond, {
+                opacity: 0,
+                scale: 0.5,
+                duration: 0.8,
+                ease: "power2.in"
+            })
+            .to(diamond, {
+                duration: Math.random() * 5 + 3
+            });
+    }
 }
