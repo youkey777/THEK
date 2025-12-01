@@ -68,18 +68,18 @@ mobileLinks.forEach(link => {
     });
 });
 
-// Scroll Animations
+// Scroll Animations - シンプルなフェードインのみ（フェードアウトなし）
 gsap.utils.toArray(".section-title, .section-subtitle").forEach(target => {
     gsap.from(target, {
         scrollTrigger: {
             trigger: target,
-            start: "top 80%",
-            toggleActions: "play none none reverse"
+            start: "top 85%",
+            once: true
         },
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 1,
-        ease: "power3.out"
+        duration: 0.8,
+        ease: "power2.out"
     });
 });
 
@@ -87,76 +87,82 @@ gsap.utils.toArray(".value-card").forEach((card, i) => {
     gsap.from(card, {
         scrollTrigger: {
             trigger: card,
-            start: "top 85%",
+            start: "top 90%",
+            once: true
         },
-        y: 50,
+        y: 30,
         opacity: 0,
-        duration: 0.8,
-        delay: i * 0.2,
-        ease: "power3.out"
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: "power2.out"
     });
 });
 
 gsap.from(".concept-text-vertical p", {
     scrollTrigger: {
         trigger: ".concept-text-vertical",
-        start: "top 70%",
-    },
-    y: 30,
-    opacity: 0,
-    duration: 1,
-    stagger: 0.3,
-    ease: "power3.out"
-});
-
-gsap.from(".story-text p", {
-    scrollTrigger: {
-        trigger: ".story-text",
-        start: "top 75%",
+        start: "top 80%",
+        once: true
     },
     y: 20,
     opacity: 0,
     duration: 0.8,
     stagger: 0.2,
-    ease: "power3.out"
+    ease: "power2.out"
+});
+
+gsap.from(".story-text p", {
+    scrollTrigger: {
+        trigger: ".story-text",
+        start: "top 80%",
+        once: true
+    },
+    y: 15,
+    opacity: 0,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power2.out"
 });
 
 gsap.utils.toArray(".time-slot").forEach((slot, i) => {
     gsap.from(slot, {
         scrollTrigger: {
             trigger: slot,
-            start: "top 85%",
+            start: "top 90%",
+            once: true
         },
-        x: -30,
+        x: -20,
         opacity: 0,
-        duration: 0.8,
-        ease: "power3.out"
+        duration: 0.6,
+        ease: "power2.out"
     });
 });
 
 gsap.from(".step", {
     scrollTrigger: {
         trigger: ".flow-steps",
-        start: "top 80%",
+        start: "top 85%",
+        once: true
     },
-    y: 30,
+    y: 20,
     opacity: 0,
-    duration: 0.8,
-    stagger: 0.2,
-    ease: "power3.out"
+    duration: 0.6,
+    stagger: 0.1,
+    ease: "power2.out"
 });
 
 gsap.utils.toArray(".review-card").forEach((card, i) => {
     gsap.from(card, {
         scrollTrigger: {
             trigger: card,
-            start: "top 85%",
+            start: "top 90%",
+            once: true
         },
-        y: 30,
+        y: 20,
         opacity: 0,
-        duration: 0.8,
-        delay: i * 0.2,
-        ease: "power3.out"
+        duration: 0.6,
+        delay: i * 0.1,
+        ease: "power2.out"
     });
 });
 

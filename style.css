@@ -881,17 +881,6 @@ h4 {
   gap: 1rem;
 }
 
-.flow-steps::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 5%;
-  width: 90%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
-  z-index: 0;
-}
-
 .step {
   background-color: #fff;
   padding: 2rem 1.5rem;
@@ -1189,13 +1178,6 @@ h4 {
   .flow-steps {
     flex-direction: column;
     gap: 1.5rem;
-  }
-
-  .flow-steps::before {
-    width: 1px;
-    height: 90%;
-    top: 5%;
-    left: 50%;
   }
 
   .footer-content {
