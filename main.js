@@ -162,3 +162,36 @@ gsap.to(".hero-bg", {
     y: 200,
     ease: "none"
 });
+
+// Story Background Animation
+const storyBg = document.querySelector(".story-bg-anim");
+if (storyBg) {
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("particle");
+        storyBg.appendChild(particle);
+
+        gsap.set(particle, {
+            x: Math.random() * 100 + "%",
+            y: Math.random() * 100 + "%",
+            scale: Math.random() * 0.5 + 0.5,
+            opacity: Math.random() * 0.5 + 0.2,
+            position: "absolute",
+            width: "10px",
+            height: "10px",
+            backgroundColor: "#C5A059",
+            borderRadius: "50%",
+            filter: "blur(5px)"
+        });
+
+        gsap.to(particle, {
+            y: "-=100",
+            x: "+=50",
+            rotation: 360,
+            duration: Math.random() * 10 + 10,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut"
+        });
+    }
+}

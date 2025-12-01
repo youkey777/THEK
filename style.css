@@ -967,32 +967,161 @@ h4 {
   color: var(--color-off-white);
 }
 
-.copyright {
-  background-color: var(--color-black);
+/* Works */
+.works {
+  background-color: var(--color-off-white);
+  text-align: center;
+}
+
+.works-content {
+  padding: 4rem 0;
+}
+
+.coming-soon {
+  font-family: var(--font-serif-en);
+  font-size: 2rem;
+  color: var(--color-gold);
+  margin-bottom: 1rem;
+}
+
+/* Info */
+.info {
+  background-color: #F2F0EB;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+}
+
+.info-item h3 {
+  font-family: var(--font-serif-en);
+  font-size: 1.5rem;
+  color: var(--color-black);
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-gold);
+  padding-bottom: 0.5rem;
+  display: inline-block;
+}
+
+.info-item p {
+  font-family: var(--font-serif-en);
+  margin-bottom: 0.5rem;
+}
+
+.info-item .note {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  display: block;
+  margin-top: 0.5rem;
+}
+
+/* Story Animation Background */
+.story {
+  position: relative;
+  overflow: hidden;
+}
+
+.story-bg-anim {
   position: absolute;
-  transition: all 0.3s ease;
-}
-
-.hamburger span:first-child {
   top: 0;
-}
-
-.hamburger span:last-child {
-  bottom: 0;
-}
-
-.flow-steps {
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.flow-steps::before {
-  width: 1px;
+  left: 0;
+  width: 100%;
   height: 100%;
-  top: 0;
-  left: 50%;
+  z-index: 0;
+  pointer-events: none;
 }
 
-.step {
-  padding: 1rem;
+.story-inner {
+  position: relative;
+  z-index: 1;
+  display: block;
+  /* Changed from flex to block for centering */
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.story-content {
+  width: 100%;
+}
+
+.story-text {
+  margin-top: 3rem;
+}
+
+/* Responsive Fixes */
+@media (max-width: 768px) {
+  .header {
+    padding: 1rem 1.5rem;
+    justify-content: space-between;
+  }
+
+  .header-logo {
+    z-index: 102;
+    /* Ensure logo is above mobile menu */
+  }
+
+  .concept-inner {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .concept-text-vertical {
+    writing-mode: horizontal-tb;
+    height: auto;
+    margin-bottom: 3rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .concept-text-vertical p {
+    margin-bottom: 1.5rem;
+    line-height: 2;
+  }
+
+  .concept-english {
+    text-align: center;
+    padding-top: 0;
+  }
+
+  .story-inner {
+    padding: 0 1rem;
+  }
+
+  .plan-wrapper {
+    flex-direction: column;
+  }
+
+  .plan-timeline {
+    padding-left: 1rem;
+    border-left: none;
+  }
+
+  .time-slot {
+    padding-left: 1.5rem;
+  }
+
+  .time-slot::before {
+    left: 0;
+  }
+
+  .plan-visual {
+    height: 300px;
+    position: static;
+    margin-top: 2rem;
+  }
+
+  .flow-steps {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .flow-steps::before {
+    width: 1px;
+    height: 100%;
+    top: 0;
+    left: 50%;
+  }
 }
