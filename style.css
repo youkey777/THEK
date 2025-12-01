@@ -624,13 +624,11 @@ h4 {
 }
 
 .plan-wrapper {
-  display: flex;
-  gap: clamp(2rem, 4vw, 3rem);
-  align-items: stretch;
+  display: block;
 }
 
 .plan-timeline {
-  flex: 0 0 50%;
+  width: 100%;
   position: relative;
   padding: 2.5rem 3rem 2.5rem 2.5rem;
   background: rgba(0, 0, 0, 0.92);
@@ -679,22 +677,9 @@ h4 {
   color: rgba(255, 255, 255, 0.6);
 }
 
-.plan-visual {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 3rem;
-  background: transparent;
-}
-
+.plan-visual,
 .plan-image-placeholder {
-  width: 100%;
-  min-height: 520px;
-  background: linear-gradient(120deg, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.88) 50%, var(--color-off-white) 100%);
-  border-radius: 6px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.18);
+  display: none;
 }
 
 /* ==================== Reviews - マガジンスタイル ==================== */
@@ -1019,8 +1004,7 @@ h4 {
   }
 
   .plan-wrapper {
-    flex-direction: column;
-    gap: 2rem;
+    display: block;
   }
 
   .plan-timeline {
@@ -1034,12 +1018,7 @@ h4 {
   }
 
   .plan-visual {
-    padding: 0 0 2rem;
-  }
-
-  .plan-image-placeholder {
-    min-height: 360px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.88) 60%, var(--color-off-white) 100%);
+    display: none;
   }
 
   .info-grid {
@@ -1132,8 +1111,7 @@ h4 {
   }
 
   .plan-image-placeholder {
-    min-height: 300px;
-    background: linear-gradient(185deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.88) 65%, var(--color-off-white) 100%);
+    display: none;
   }
 
   .review-image {
