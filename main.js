@@ -63,12 +63,6 @@ hamburger.addEventListener("click", () => {
     // Animate hamburger lines if needed, or just toggle class
 });
 
-mobileLinks.forEach(link => {
-    link.addEventListener("click", () => {
-        mobileMenu.classList.remove("active");
-    });
-});
-
 // Scroll Animations
 gsap.utils.toArray(".section-title, .section-subtitle").forEach(target => {
     gsap.from(target, {
@@ -110,6 +104,29 @@ gsap.from(".concept-text-vertical p", {
     ease: "power3.out"
 });
 
+gsap.from(".story-text p", {
+    scrollTrigger: {
+        trigger: ".story-text",
+        start: "top 75%",
+    },
+    y: 20,
+    opacity: 0,
+    duration: 0.8,
+    stagger: 0.2,
+    ease: "power3.out"
+});
+
+gsap.from(".story-image", {
+    scrollTrigger: {
+        trigger: ".story-image",
+        start: "top 75%",
+    },
+    x: 50,
+    opacity: 0,
+    duration: 1,
+    ease: "power3.out"
+});
+
 gsap.utils.toArray(".time-slot").forEach((slot, i) => {
     gsap.from(slot, {
         scrollTrigger: {
@@ -122,7 +139,6 @@ gsap.utils.toArray(".time-slot").forEach((slot, i) => {
         ease: "power3.out"
     });
 });
-
 gsap.from(".step", {
     scrollTrigger: {
         trigger: ".flow-steps",
