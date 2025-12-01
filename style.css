@@ -1,7 +1,9 @@
 :root {
   --color-gold: #C5A059;
   --color-gold-light: #E0C080;
+  --color-gold-dark: #A68840;
   --color-off-white: #F9F8F4;
+  --color-cream: #F5F3EE;
   --color-black: #1A1A1A;
   --color-text: #2C2C2C;
   --color-text-light: #666;
@@ -194,7 +196,7 @@ h4 {
   text-decoration: none;
 }
 
-/* Hero */
+/* ==================== Hero ==================== */
 .hero {
   position: relative;
   height: 100vh;
@@ -215,7 +217,6 @@ h4 {
   background-size: cover;
   background-position: center;
   z-index: -2;
-  transform: scale(1.1);
 }
 
 .hero-overlay {
@@ -224,7 +225,7 @@ h4 {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
+  background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.4) 100%);
   z-index: -1;
 }
 
@@ -245,17 +246,15 @@ h4 {
   overflow: hidden;
 }
 
-.line {
+.hero-title .line {
   display: block;
-  transform: translateY(100%);
 }
 
 .hero-subtitle {
   font-family: var(--font-serif-jp);
   font-size: clamp(1rem, 2vw, 1.25rem);
   letter-spacing: 0.2em;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 1;
 }
 
 .scroll-indicator {
@@ -270,7 +269,7 @@ h4 {
   font-family: var(--font-sans);
   font-size: 0.8rem;
   letter-spacing: 0.1em;
-  opacity: 0;
+  opacity: 1;
 }
 
 .scroll-indicator .line {
@@ -278,13 +277,19 @@ h4 {
   height: 60px;
   background-color: var(--color-off-white);
   margin-top: 10px;
-  transform: scaleY(0);
   transform-origin: top;
+  animation: scrollLine 2s ease-in-out infinite;
 }
 
-/* Sections */
+@keyframes scrollLine {
+  0%, 100% { transform: scaleY(0); }
+  50% { transform: scaleY(1); }
+}
+
+/* ==================== Sections Base ==================== */
 .section {
   padding: var(--spacing-xl) 0;
+  position: relative;
 }
 
 .container {
@@ -293,12 +298,31 @@ h4 {
   margin: 0 auto;
 }
 
-/* Concept */
+/* ==================== Concept - 斜めレイアウト ==================== */
+.concept {
+  background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-cream) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.concept::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 80%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 40%, rgba(197, 160, 89, 0.03) 100%);
+  transform: rotate(-15deg);
+  pointer-events: none;
+}
+
 .concept-inner {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   gap: var(--spacing-lg);
+  position: relative;
 }
 
 .concept-text-vertical {
@@ -311,6 +335,18 @@ h4 {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative;
+}
+
+.concept-text-vertical::after {
+  content: '';
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, var(--color-gold), transparent);
 }
 
 .concept-english {
@@ -322,52 +358,115 @@ h4 {
   font-size: 3rem;
   margin-bottom: 1.5rem;
   color: var(--color-black);
+  position: relative;
 }
 
-/* Values */
+.concept-english h2::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 60px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+/* ==================== Values - カードに奥行き ==================== */
+.values {
+  background-color: var(--color-black);
+  color: var(--color-off-white);
+  position: relative;
+  overflow: hidden;
+}
+
+.values::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at 20% 50%, rgba(197, 160, 89, 0.08) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 80%, rgba(197, 160, 89, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.values .section-title {
+  color: var(--color-off-white);
+}
+
 .values-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  perspective: 1000px;
 }
 
 .value-card {
-  padding: 2rem;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  padding: 3rem 2rem;
+  background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  border-radius: 4px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.value-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
 }
 
 .value-card:hover {
-  transform: translateY(-10px);
+  transform: translateY(-15px) rotateX(5deg);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+  border-color: var(--color-gold);
+}
+
+.value-card:hover::before {
+  transform: scaleX(1);
 }
 
 .value-number {
   font-family: var(--font-serif-en);
-  font-size: 3rem;
+  font-size: 4rem;
   color: var(--color-gold);
-  margin-bottom: 1rem;
-  opacity: 0.5;
+  margin-bottom: 1.5rem;
+  opacity: 0.3;
+  line-height: 1;
 }
 
 .value-card h3 {
   font-family: var(--font-serif-en);
   font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: var(--color-black);
+  margin-bottom: 1.5rem;
+  color: var(--color-gold-light);
 }
 
 .value-card .jp {
   font-family: var(--font-serif-jp);
   font-size: 0.95rem;
   margin-bottom: 0.5rem;
-  color: var(--color-text);
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 2;
 }
 
-/* Story */
+/* ==================== Story - 優雅なアニメーション ==================== */
 .story {
-  background-color: #F2F0EB;
+  background: linear-gradient(180deg, var(--color-cream) 0%, #EAE7E0 100%);
   position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .story-bg-anim {
@@ -378,70 +477,61 @@ h4 {
   height: 100%;
   z-index: 0;
   pointer-events: none;
+  overflow: hidden;
 }
 
-/* ==================== Story Animation Elements ==================== */
-
-/* Golden Orbs - Large floating spheres */
-.golden-orb {
+/* 流線的なウェーブ */
+.golden-wave {
   position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle at 30% 30%,
-    rgba(224, 192, 128, 0.4) 0%,
-    rgba(197, 160, 89, 0.2) 40%,
-    rgba(197, 160, 89, 0.05) 70%,
-    transparent 100%);
-  filter: blur(2px);
-}
-
-/* Shimmer Particles - Small twinkling stars */
-.shimmer-particle {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  background: radial-gradient(circle,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(224, 192, 128, 0.6) 50%,
-    transparent 100%);
-  box-shadow:
-    0 0 6px 2px rgba(224, 192, 128, 0.4),
-    0 0 12px 4px rgba(197, 160, 89, 0.2);
-}
-
-/* Flowing Lines - Elegant horizontal streaks */
-.flowing-line {
-  position: absolute;
+  width: 200%;
+  height: 2px;
   pointer-events: none;
   background: linear-gradient(90deg,
     transparent 0%,
-    rgba(197, 160, 89, 0.1) 20%,
-    rgba(224, 192, 128, 0.3) 50%,
-    rgba(197, 160, 89, 0.1) 80%,
+    rgba(197, 160, 89, 0.1) 10%,
+    rgba(224, 192, 128, 0.4) 30%,
+    rgba(197, 160, 89, 0.4) 50%,
+    rgba(224, 192, 128, 0.4) 70%,
+    rgba(197, 160, 89, 0.1) 90%,
     transparent 100%);
   filter: blur(1px);
 }
 
-/* Diamond Sparkles - Burst effect */
-.diamond-sparkle {
-  position: absolute;
-  pointer-events: none;
-  background: linear-gradient(135deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(224, 192, 128, 0.8) 50%,
-    rgba(197, 160, 89, 0.6) 100%);
-  box-shadow:
-    0 0 10px 3px rgba(224, 192, 128, 0.5),
-    0 0 20px 6px rgba(197, 160, 89, 0.3),
-    0 0 30px 10px rgba(197, 160, 89, 0.1);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-}
-
-/* Legacy particle class */
-.particle {
+/* 浮遊する光の粒 */
+.light-particle {
   position: absolute;
   border-radius: 50%;
   pointer-events: none;
+  background: radial-gradient(circle,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(224, 192, 128, 0.4) 40%,
+    transparent 70%);
+}
+
+/* 優雅なオーブ */
+.elegant-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 30%,
+    rgba(255, 255, 255, 0.15) 0%,
+    rgba(224, 192, 128, 0.08) 30%,
+    rgba(197, 160, 89, 0.03) 60%,
+    transparent 100%);
+  backdrop-filter: blur(1px);
+}
+
+/* 縦のライトストリーム */
+.light-stream {
+  position: absolute;
+  width: 1px;
+  pointer-events: none;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(224, 192, 128, 0.3) 20%,
+    rgba(197, 160, 89, 0.5) 50%,
+    rgba(224, 192, 128, 0.3) 80%,
+    transparent 100%);
 }
 
 .story-inner {
@@ -451,14 +541,21 @@ h4 {
   text-align: center;
   max-width: 800px;
   margin: 0 auto;
+  padding: var(--spacing-xl) 0;
 }
 
 .story-content {
   width: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(10px);
+  padding: 4rem 3rem;
+  border-radius: 8px;
+  border: 1px solid rgba(197, 160, 89, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.05);
 }
 
 .story-text {
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .story-text p {
@@ -466,6 +563,7 @@ h4 {
   margin-bottom: 1.5rem;
   font-size: 1.05rem;
   color: var(--color-text);
+  line-height: 2.2;
 }
 
 .story-conclusion {
@@ -474,36 +572,90 @@ h4 {
   color: var(--color-black) !important;
   margin-top: 2rem;
   letter-spacing: 0.05em;
+  position: relative;
+  display: inline-block;
 }
 
-/* Plan */
+.story-conclusion::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 2px;
+  background: var(--color-gold);
+}
+
+/* ==================== Plan - フルワイド背景 ==================== */
+.plan {
+  background: var(--color-off-white);
+  position: relative;
+}
+
+.plan::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-black) 0%, var(--color-black) 80%, transparent 100%);
+  z-index: 0;
+}
+
+.plan .container {
+  position: relative;
+  z-index: 1;
+}
+
+.plan .section-header {
+  color: var(--color-off-white);
+  margin-bottom: var(--spacing-lg);
+}
+
+.plan .section-title {
+  color: var(--color-off-white);
+}
+
 .plan-wrapper {
   display: flex;
-  gap: var(--spacing-lg);
+  gap: 0;
 }
 
 .plan-timeline {
-  flex: 1;
+  flex: 0 0 45%;
   position: relative;
-  padding-left: 2rem;
-  border-left: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 2rem 3rem 2rem 2rem;
+  background: var(--color-black);
+}
+
+.plan-timeline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--color-gold), transparent);
 }
 
 .time-slot {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 2.5rem;
   padding-left: 2rem;
 }
 
 .time-slot::before {
   content: '';
   position: absolute;
-  left: -2.35rem;
+  left: 0;
   top: 0.5rem;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   background-color: var(--color-gold);
   border-radius: 50%;
+  box-shadow: 0 0 10px rgba(197, 160, 89, 0.5);
 }
 
 .time-slot .time {
@@ -512,92 +664,196 @@ h4 {
   font-weight: 600;
   color: var(--color-gold);
   margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .time-slot h4 {
   font-family: var(--font-serif-en);
   font-size: 1.25rem;
   margin-bottom: 0.25rem;
-  color: var(--color-black);
+  color: var(--color-off-white);
 }
 
 .time-slot p {
   font-family: var(--font-serif-jp);
-  font-size: 0.9rem;
-  color: var(--color-text-light);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.6);
 }
 
 .plan-visual {
-  display: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 3rem;
+  background: var(--color-off-white);
 }
 
-/* Reviews / Works */
+.plan-description {
+  max-width: 400px;
+}
+
+.plan-description h3 {
+  font-family: var(--font-serif-en);
+  font-size: 2rem;
+  color: var(--color-black);
+  margin-bottom: 1.5rem;
+}
+
+.plan-description p {
+  font-family: var(--font-serif-jp);
+  color: var(--color-text);
+  line-height: 2;
+  margin-bottom: 2rem;
+}
+
+.plan-note {
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+  border-left: 2px solid var(--color-gold);
+  padding-left: 1rem;
+}
+
+/* ==================== Reviews - マガジンスタイル ==================== */
+.works {
+  background: linear-gradient(180deg, #EAE7E0 0%, var(--color-off-white) 100%);
+  position: relative;
+}
+
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 2rem;
 }
 
 .review-card {
   background-color: #fff;
   overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.review-card:first-child {
+  grid-row: span 2;
+}
+
+.review-card:first-child .review-image {
+  height: 400px;
+}
+
+.review-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
 }
 
 .review-image {
   width: 100%;
-  height: 250px;
+  height: 220px;
   overflow: hidden;
+  position: relative;
+}
+
+.review-image::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.3));
+  pointer-events: none;
 }
 
 .review-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .review-card:hover .review-image img {
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .review-content {
-  padding: 1.5rem;
+  padding: 2rem;
+  position: relative;
+}
+
+.review-content::before {
+  content: '"';
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-family: var(--font-serif-en);
+  font-size: 5rem;
+  color: var(--color-gold);
+  opacity: 0.1;
+  line-height: 1;
 }
 
 .review-location {
   font-family: var(--font-serif-en);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--color-gold);
-  margin-bottom: 0.75rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
 }
 
 .review-text {
   font-family: var(--font-serif-jp);
   font-size: 0.95rem;
-  line-height: 1.8;
-  margin-bottom: 1rem;
+  line-height: 2;
+  margin-bottom: 1.5rem;
   color: var(--color-text);
 }
 
 .review-author {
   font-family: var(--font-sans);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   color: var(--color-text-light);
 }
 
-/* Info */
+/* ==================== Info - 2カラム非対称 ==================== */
+.info {
+  background: var(--color-off-white);
+  position: relative;
+}
+
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--spacing-md);
+  grid-template-columns: 1fr 1.5fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.info-item {
+  padding: 2rem;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .info-item h3 {
   font-family: var(--font-serif-en);
   font-size: 1.25rem;
-  margin-bottom: 1rem;
-  color: var(--color-gold);
+  margin-bottom: 1.5rem;
+  color: var(--color-black);
+  position: relative;
+  padding-bottom: 1rem;
+}
+
+.info-item h3::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30px;
+  height: 2px;
+  background: var(--color-gold);
 }
 
 .info-item p {
@@ -609,93 +865,151 @@ h4 {
 .info-item .note {
   font-size: 0.8rem;
   color: var(--color-text-light);
+  margin-top: 1rem;
 }
 
-/* Flow */
+/* ==================== Flow - 横スクロール風 ==================== */
+.flow {
+  background: linear-gradient(135deg, var(--color-cream) 0%, var(--color-off-white) 100%);
+  overflow: hidden;
+}
+
 .flow-steps {
   display: flex;
   justify-content: space-between;
   position: relative;
-  flex-wrap: wrap;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .flow-steps::before {
   content: '';
   position: absolute;
   top: 50%;
-  left: 0;
-  width: 100%;
+  left: 5%;
+  width: 90%;
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.1);
-  z-index: -1;
+  background: linear-gradient(90deg, transparent, var(--color-gold), transparent);
+  z-index: 0;
 }
 
 .step {
-  background-color: var(--color-off-white);
-  padding: 0 1rem;
+  background-color: #fff;
+  padding: 2rem 1.5rem;
   text-align: center;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  border-radius: 4px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: all 0.4s ease;
+}
+
+.step:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
 }
 
 .step-num {
   display: block;
   font-family: var(--font-serif-en);
-  font-size: 2.5rem;
+  font-size: 2rem;
   color: var(--color-gold);
   margin-bottom: 0.5rem;
 }
 
 .step p {
   font-family: var(--font-serif-en);
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: var(--color-black);
   margin-bottom: 0.25rem;
 }
 
 .step-desc {
   font-family: var(--font-serif-jp);
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   color: var(--color-text-light);
 }
 
-/* Contact */
+/* ==================== Contact - フルスクリーン ==================== */
 .contact {
-  background-color: var(--color-black);
+  background: linear-gradient(135deg, var(--color-black) 0%, #0a0a0a 100%);
   color: var(--color-off-white);
   text-align: center;
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(ellipse at center, rgba(197, 160, 89, 0.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact-inner {
+  position: relative;
+  z-index: 1;
 }
 
 .contact-title {
   color: var(--color-gold);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   margin-bottom: 1.5rem;
 }
 
 .contact-text {
   font-family: var(--font-serif-jp);
   margin-bottom: 3rem;
+  font-size: 1.1rem;
+  opacity: 0.9;
 }
 
 .btn-primary {
   display: inline-block;
-  padding: 1rem 3rem;
-  background-color: var(--color-gold);
-  color: var(--color-off-white);
+  padding: 1.25rem 3.5rem;
+  background: transparent;
+  color: var(--color-gold);
   text-decoration: none;
   font-family: var(--font-serif-en);
   font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  transition: background-color 0.3s ease;
+  letter-spacing: 0.15em;
+  border: 1px solid var(--color-gold);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--color-gold);
+  transition: left 0.4s ease;
+  z-index: -1;
 }
 
 .btn-primary:hover {
-  background-color: var(--color-gold-light);
+  color: var(--color-black);
 }
 
-/* Footer */
+.btn-primary:hover::before {
+  left: 0;
+}
+
+/* ==================== Footer ==================== */
 .footer {
-  background-color: #111;
-  color: #888;
+  background-color: #0a0a0a;
+  color: #666;
   padding: 4rem 0 2rem;
   font-size: 0.8rem;
 }
@@ -705,7 +1019,7 @@ h4 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid #222;
   padding-bottom: 2rem;
 }
 
@@ -722,9 +1036,57 @@ h4 {
 .copyright {
   text-align: center;
   font-size: 0.75rem;
+  color: #444;
 }
 
 /* ==================== Responsive ==================== */
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .review-card:first-child {
+    grid-row: auto;
+  }
+
+  .review-card:first-child .review-image {
+    height: 250px;
+  }
+
+  .plan::before {
+    display: none;
+  }
+
+  .plan-wrapper {
+    flex-direction: column;
+  }
+
+  .plan-timeline {
+    flex: auto;
+    padding: 2rem;
+  }
+
+  .plan-timeline::after {
+    display: none;
+  }
+
+  .plan .section-header {
+    color: var(--color-black);
+  }
+
+  .plan .section-title {
+    color: var(--color-black);
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 768px) {
   html,
   body {
@@ -732,7 +1094,6 @@ h4 {
     width: 100%;
   }
 
-  /* Header Mobile */
   .header {
     padding: 1rem 1.5rem;
   }
@@ -753,7 +1114,6 @@ h4 {
     z-index: 102;
   }
 
-  /* Concept Mobile */
   .concept-inner {
     flex-direction: column;
     align-items: center;
@@ -765,6 +1125,10 @@ h4 {
     margin-bottom: 3rem;
     text-align: center;
     width: 100%;
+  }
+
+  .concept-text-vertical::after {
+    display: none;
   }
 
   .concept-text-vertical p {
@@ -781,49 +1145,33 @@ h4 {
     font-size: 2rem;
   }
 
-  /* Values Mobile */
-  .values-grid {
-    grid-template-columns: 1fr;
+  .concept-english h2::after {
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  /* Story Mobile */
+  .story-content {
+    padding: 2rem 1.5rem;
+  }
+
   .story-inner {
     padding: 0 1rem;
   }
 
-  /* Plan Mobile */
-  .plan-wrapper {
-    flex-direction: column;
-  }
-
   .plan-timeline {
-    padding-left: 1rem;
-    border-left: none;
+    background: var(--color-off-white);
   }
 
-  .time-slot {
-    padding-left: 1.5rem;
+  .time-slot h4 {
+    color: var(--color-black);
   }
 
-  .time-slot::before {
-    left: 0;
+  .time-slot p {
+    color: var(--color-text-light);
   }
 
   .plan-visual {
-    height: auto;
-    position: static;
-    margin-top: 2rem;
-  }
-
-  .plan-image-placeholder {
-    height: 300px;
-    min-height: 300px;
-  }
-
-  /* Reviews Mobile */
-  .reviews-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
+    display: none;
   }
 
   .review-image {
@@ -831,27 +1179,25 @@ h4 {
   }
 
   .review-content {
-    padding: 1.25rem;
+    padding: 1.5rem;
   }
 
   .review-text {
     font-size: 0.9rem;
   }
 
-  /* Flow Mobile */
   .flow-steps {
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.5rem;
   }
 
   .flow-steps::before {
     width: 1px;
-    height: 100%;
-    top: 0;
+    height: 90%;
+    top: 5%;
     left: 50%;
   }
 
-  /* Footer Mobile */
   .footer-content {
     flex-direction: column;
     text-align: center;
@@ -873,7 +1219,15 @@ h4 {
   }
 
   .btn-primary {
-    padding: 0.875rem 2rem;
+    padding: 1rem 2rem;
     font-size: 1rem;
+  }
+
+  .value-card {
+    padding: 2rem 1.5rem;
+  }
+
+  .value-number {
+    font-size: 3rem;
   }
 }

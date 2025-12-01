@@ -172,24 +172,48 @@ gsap.to(".hero-bg", {
     ease: "none"
 });
 
-// Story Background Animation - Luxurious Golden Particles
+// Story Background Animation - Elegant Flowing Golden Light
 const storyBg = document.querySelector(".story-bg-anim");
 if (storyBg) {
     storyBg.innerHTML = '';
 
-    // Create multiple layers of animation elements
+    // Layer 1: 優雅な横方向のウェーブ（流線的）
+    for (let i = 0; i < 6; i++) {
+        const wave = document.createElement("div");
+        wave.classList.add("golden-wave");
+        storyBg.appendChild(wave);
 
-    // Layer 1: Floating golden orbs (large, slow)
-    for (let i = 0; i < 15; i++) {
+        const yPos = 15 + i * 15; // 均等に配置
+        const duration = 20 + i * 3; // それぞれ異なる速度
+        const delay = i * 2;
+
+        gsap.set(wave, {
+            left: "-100%",
+            top: yPos + "%",
+            opacity: 0
+        });
+
+        // 滑らかな横移動
+        gsap.to(wave, {
+            left: "100%",
+            opacity: 0.6,
+            duration: duration,
+            repeat: -1,
+            ease: "none",
+            delay: delay
+        });
+    }
+
+    // Layer 2: 優雅に浮遊するオーブ（大きくゆっくり）
+    for (let i = 0; i < 8; i++) {
         const orb = document.createElement("div");
-        orb.classList.add("golden-orb");
+        orb.classList.add("elegant-orb");
         storyBg.appendChild(orb);
 
-        const size = Math.random() * 80 + 40; // 40-120px
+        const size = 100 + Math.random() * 150; // 100-250px
         const xPos = Math.random() * 100;
         const yPos = Math.random() * 100;
-        const duration = Math.random() * 25 + 20;
-        const delay = Math.random() * 8;
+        const duration = 30 + Math.random() * 20;
 
         gsap.set(orb, {
             left: xPos + "%",
@@ -201,50 +225,79 @@ if (storyBg) {
             opacity: 0
         });
 
-        // Fade in
+        // ゆっくりフェードイン
         gsap.to(orb, {
-            opacity: Math.random() * 0.15 + 0.05,
-            duration: 3,
-            delay: delay,
+            opacity: 0.12,
+            duration: 4,
+            delay: i * 0.5,
             ease: "power2.out"
         });
 
-        // Floating movement
+        // なめらかな浮遊
         gsap.to(orb, {
-            x: `+=${Math.random() * 150 - 75}`,
-            y: `+=${Math.random() * 100 - 50}`,
+            x: `+=${Math.random() * 80 - 40}`,
+            y: `+=${Math.random() * 60 - 30}`,
             duration: duration,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
-            delay: delay
+            delay: i * 0.5
         });
 
-        // Subtle pulse
+        // 呼吸するようなパルス
         gsap.to(orb, {
-            scale: 1.2,
-            opacity: "+=0.05",
-            duration: Math.random() * 5 + 4,
+            scale: 1.15,
+            opacity: 0.18,
+            duration: 8 + Math.random() * 4,
             repeat: -1,
             yoyo: true,
             ease: "sine.inOut",
+            delay: i * 0.5
+        });
+    }
+
+    // Layer 3: 縦に流れる光のストリーム
+    for (let i = 0; i < 5; i++) {
+        const stream = document.createElement("div");
+        stream.classList.add("light-stream");
+        storyBg.appendChild(stream);
+
+        const xPos = 15 + i * 18; // 均等に配置
+        const height = 150 + Math.random() * 100;
+        const duration = 12 + Math.random() * 8;
+        const delay = i * 3;
+
+        gsap.set(stream, {
+            left: xPos + "%",
+            top: "-20%",
+            height: height,
+            opacity: 0
+        });
+
+        // 上から下への流れ
+        gsap.to(stream, {
+            top: "120%",
+            opacity: 0.4,
+            duration: duration,
+            repeat: -1,
+            ease: "power1.inOut",
             delay: delay
         });
     }
 
-    // Layer 2: Shimmer particles (small, fast)
-    for (let i = 0; i < 50; i++) {
-        const shimmer = document.createElement("div");
-        shimmer.classList.add("shimmer-particle");
-        storyBg.appendChild(shimmer);
+    // Layer 4: 繊細な光の粒子（少なめで上品に）
+    for (let i = 0; i < 20; i++) {
+        const particle = document.createElement("div");
+        particle.classList.add("light-particle");
+        storyBg.appendChild(particle);
 
-        const size = Math.random() * 4 + 2; // 2-6px
+        const size = 3 + Math.random() * 4; // 3-7px
         const xPos = Math.random() * 100;
         const yPos = Math.random() * 100;
-        const duration = Math.random() * 8 + 5;
+        const duration = 15 + Math.random() * 10;
         const delay = Math.random() * 10;
 
-        gsap.set(shimmer, {
+        gsap.set(particle, {
             left: xPos + "%",
             top: yPos + "%",
             xPercent: -50,
@@ -254,100 +307,24 @@ if (storyBg) {
             opacity: 0
         });
 
-        // Twinkle animation
-        gsap.to(shimmer, {
-            opacity: Math.random() * 0.8 + 0.2,
-            duration: Math.random() * 2 + 1,
+        // ゆっくりとした明滅
+        gsap.to(particle, {
+            opacity: 0.5 + Math.random() * 0.3,
+            duration: 3 + Math.random() * 2,
             delay: delay,
             repeat: -1,
             yoyo: true,
-            ease: "power1.inOut"
+            ease: "sine.inOut"
         });
 
-        // Drift upward
-        gsap.to(shimmer, {
-            y: `-=${Math.random() * 200 + 100}`,
-            x: `+=${Math.random() * 60 - 30}`,
+        // なめらかな漂い
+        gsap.to(particle, {
+            x: `+=${Math.random() * 40 - 20}`,
+            y: `-=${Math.random() * 80 + 40}`,
             duration: duration,
             repeat: -1,
             ease: "none",
             delay: delay
         });
-    }
-
-    // Layer 3: Flowing lines (elegant streaks)
-    for (let i = 0; i < 8; i++) {
-        const line = document.createElement("div");
-        line.classList.add("flowing-line");
-        storyBg.appendChild(line);
-
-        const width = Math.random() * 150 + 100;
-        const yPos = Math.random() * 80 + 10;
-        const duration = Math.random() * 15 + 12;
-        const delay = Math.random() * 5;
-
-        gsap.set(line, {
-            left: "-20%",
-            top: yPos + "%",
-            width: width,
-            height: 1,
-            opacity: 0
-        });
-
-        // Sweep across
-        gsap.to(line, {
-            left: "120%",
-            opacity: 0.3,
-            duration: duration,
-            repeat: -1,
-            ease: "power1.inOut",
-            delay: delay,
-            onRepeat: () => {
-                gsap.set(line, { top: Math.random() * 80 + 10 + "%" });
-            }
-        });
-    }
-
-    // Layer 4: Diamond sparkles
-    for (let i = 0; i < 20; i++) {
-        const diamond = document.createElement("div");
-        diamond.classList.add("diamond-sparkle");
-        storyBg.appendChild(diamond);
-
-        const size = Math.random() * 10 + 5;
-        const xPos = Math.random() * 100;
-        const yPos = Math.random() * 100;
-        const delay = Math.random() * 15;
-
-        gsap.set(diamond, {
-            left: xPos + "%",
-            top: yPos + "%",
-            xPercent: -50,
-            yPercent: -50,
-            width: size,
-            height: size,
-            opacity: 0,
-            rotation: 45,
-            scale: 0
-        });
-
-        // Sparkle burst
-        const sparkleTimeline = gsap.timeline({ repeat: -1, delay: delay });
-        sparkleTimeline
-            .to(diamond, {
-                opacity: 0.9,
-                scale: 1,
-                duration: 0.3,
-                ease: "power2.out"
-            })
-            .to(diamond, {
-                opacity: 0,
-                scale: 0.5,
-                duration: 0.8,
-                ease: "power2.in"
-            })
-            .to(diamond, {
-                duration: Math.random() * 5 + 3
-            });
     }
 }
