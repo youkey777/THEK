@@ -7,16 +7,19 @@ gsap.registerPlugin(ScrollTrigger);
 window.addEventListener("load", () => {
     const tl = gsap.timeline();
 
-    tl.to(".loader-text", {
+    tl.to(".loader-logo", {
         opacity: 0,
         duration: 1,
         delay: 1,
         ease: "power2.out"
     })
         .to(".loader", {
-            height: 0,
-            duration: 1,
-            ease: "power4.inOut"
+            opacity: 0,
+            duration: 0.5,
+            ease: "power4.inOut",
+            onComplete: () => {
+                document.querySelector(".loader").style.display = "none";
+            }
         })
         .from(".hero-title .line", {
             y: "100%",
