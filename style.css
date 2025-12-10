@@ -7,7 +7,7 @@
   --color-black: #1A1A1A;
   --color-text: #2C2C2C;
   --color-text-light: #666;
-  --header-height: 72px;
+  --header-height: 104px;
 
   --font-serif-en: 'Cormorant Garamond', serif;
   --font-serif-jp: 'Shippori Mincho', serif;
@@ -112,11 +112,11 @@ h4 {
 .header-logo {
   display: flex;
   align-items: center;
-  height: 52px;
+  height: 64px;
 }
 
 .header-logo img {
-  height: 52px;
+  height: 64px;
   width: auto;
   display: block;
 }
@@ -1174,7 +1174,7 @@ h4 {
   }
 
   :root {
-    --header-height: 64px;
+    --header-height: 80px;
   }
 
   .hero {
