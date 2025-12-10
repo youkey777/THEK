@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 520" role="img" aria-label="Portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="0" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7f6f2"/>
+      <stop offset="100%" stop-color="#e8e6e0"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="520" fill="url(#bg)"/>
+  <circle cx="200" cy="170" r="78" fill="#2c2c2c" opacity="0.15"/>
+  <rect x="95" y="250" width="210" height="210" rx="28" fill="#1a1a1a" opacity="0.14"/>
+  <path d="M190 205c-18 0-32-14-32-32s14-32 32-32 32 14 32 32-14 32-32 32zm-5 20c-36 0-60 15-60 38v30c0 6 5 11 11 11h108c6 0 11-5 11-11v-30c0-23-24-38-60-38z"
+        fill="#1a1a1a" opacity="0.2"/>
+  <path d="M140 360c10-38 36-62 60-62s50 24 60 62" stroke="#c5a059" stroke-width="4" fill="none" opacity="0.35"/>
+  <text x="200" y="440" text-anchor="middle" font-family="Cormorant Garamond, serif" font-size="28" fill="#2c2c2c" opacity="0.55">Add host photo</text>
+</svg>
