@@ -1218,6 +1218,7 @@ h4 {
   .header-logo {
     z-index: 102;
     height: 68px;
+    margin-top: 3px;
   }
 
   .header-logo img {
