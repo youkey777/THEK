@@ -7,6 +7,7 @@
   --color-black: #1A1A1A;
   --color-text: #2C2C2C;
   --color-text-light: #666;
+  --header-height: 96px;
 
   --font-serif-en: 'Cormorant Garamond', serif;
   --font-serif-jp: 'Shippori Mincho', serif;
@@ -92,6 +93,7 @@ h4 {
   left: 0;
   width: 100%;
   padding: 2rem 3rem;
+  min-height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -206,6 +208,8 @@ h4 {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
+  margin-top: calc(-1 * var(--header-height));
+  padding-top: var(--header-height);
 }
 
 .hero-bg {
@@ -1090,9 +1094,8 @@ h4 {
     width: 100%;
   }
 
-  .hero {
-    padding-top: 0;
-    margin-top: 0;
+  :root {
+    --header-height: 72px;
   }
 
   .reviews-grid {
