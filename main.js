@@ -14,12 +14,9 @@ window.addEventListener("load", () => {
         ease: "power2.out"
     })
         .to(".loader", {
-            opacity: 0,
-            duration: 0.5,
-            ease: "power4.inOut",
-            onComplete: () => {
-                document.querySelector(".loader").style.display = "none";
-            }
+            height: 0,
+            duration: 1,
+            ease: "power4.inOut"
         })
         .from(".hero-title .line", {
             y: "100%",
