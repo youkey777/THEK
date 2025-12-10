@@ -53,6 +53,21 @@ window.addEventListener("scroll", () => {
     }
 });
 
+// Sync hero offset to actual header height (avoids initial mobile gap)
+const syncHeroOffset = () => {
+    const header = document.querySelector(".header");
+    const hero = document.querySelector(".hero");
+    if (!header || !hero) return;
+    const height = header.offsetHeight;
+    hero.style.setProperty("--dynamic-header-height", `${height}px`);
+};
+
+window.addEventListener("load", () => {
+    syncHeroOffset();
+    requestAnimationFrame(syncHeroOffset);
+});
+window.addEventListener("resize", syncHeroOffset);
+
 // Hamburger Menu
 const hamburger = document.querySelector(".hamburger");
 const mobileMenu = document.querySelector(".mobile-menu");

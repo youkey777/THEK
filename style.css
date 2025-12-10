@@ -208,8 +208,8 @@ h4 {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  margin-top: calc(-1 * var(--header-height));
-  padding-top: var(--header-height);
+  margin-top: calc(-1 * var(--dynamic-header-height, var(--header-height)));
+  padding-top: var(--dynamic-header-height, var(--header-height));
 }
 
 .hero-bg {
