@@ -62,6 +62,8 @@ const syncHeroOffset = () => {
     hero.style.setProperty("--dynamic-header-height", `${height}px`);
 };
 
+syncHeroOffset();
+
 window.addEventListener("load", () => {
     syncHeroOffset();
     requestAnimationFrame(syncHeroOffset);

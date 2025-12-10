@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 420" role="img" aria-label="The K mark">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+      .k-mark {
+        font-family: 'Great Vibes', 'Cormorant Garamond', serif;
+        font-size: 280px;
+        fill: #ffffff;
+        filter: drop-shadow(0 4px 10px rgba(0,0,0,0.3));
+      }
+      .star {
+        stroke: #ffffff;
+        stroke-width: 2.5;
+        stroke-linecap: round;
+      }
+    </style>
+  </defs>
+  <g transform="translate(40,60)">
+    <text class="k-mark" x="60" y="240">K</text>
+    <g class="star" transform="translate(70,60)">
+      <line x1="0" y1="-26" x2="0" y2="26"/>
+      <line x1="-26" y1="0" x2="26" y2="0"/>
+      <line x1="-18" y1="-18" x2="18" y2="18"/>
+      <line x1="18" y1="-18" x2="-18" y2="18"/>
+    </g>
+  </g>
+</svg>

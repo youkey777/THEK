@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 140" role="img" aria-label="THE K">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&display=swap');
+      .wordmark {
+        font-family: 'Cormorant Garamond', 'Times New Roman', serif;
+        font-weight: 600;
+        letter-spacing: 2px;
+        fill: #1A1A1A;
+        stroke: #f9f8f4;
+        stroke-width: 2.5;
+        paint-order: stroke fill;
+      }
+    </style>
+  </defs>
+  <text class="wordmark" x="20" y="95" font-size="96">The K</text>
+</svg>

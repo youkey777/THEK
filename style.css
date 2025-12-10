@@ -3,11 +3,11 @@
   --color-gold-light: #E0C080;
   --color-gold-dark: #A68840;
   --color-off-white: #F9F8F4;
-  --color-cream: #F5F3EE;
+  --color-cream: #F7F6F2;
   --color-black: #1A1A1A;
   --color-text: #2C2C2C;
   --color-text-light: #666;
-  --header-height: 96px;
+  --header-height: 72px;
 
   --font-serif-en: 'Cormorant Garamond', serif;
   --font-serif-jp: 'Shippori Mincho', serif;
@@ -92,27 +92,33 @@ h4 {
   top: 0;
   left: 0;
   width: 100%;
-  padding: 2rem 3rem;
+  padding: 1.25rem 2.5rem;
   min-height: var(--header-height);
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
   transition: background-color 0.3s ease, padding 0.3s ease;
+  background: rgba(249, 248, 244, 0.9);
+  backdrop-filter: blur(6px);
 }
 
 .header.scrolled {
-  background-color: rgba(249, 248, 244, 0.95);
-  padding: 1rem 3rem;
+  background-color: rgba(249, 248, 244, 0.97);
+  padding: 1rem 2.2rem;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .header-logo {
-  font-family: var(--font-serif-en);
-  font-size: 1.5rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--color-black);
+  display: flex;
+  align-items: center;
+  height: 52px;
+}
+
+.header-logo img {
+  height: 52px;
+  width: auto;
+  display: block;
 }
 
 .header-nav ul {
@@ -294,6 +300,48 @@ h4 {
   50% { transform: scaleY(1); }
 }
 
+/* ==================== Guide / About ==================== */
+.guide {
+  background: var(--color-off-white);
+  padding: var(--spacing-lg) 0;
+}
+
+.guide-inner {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.guide-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: rgba(255, 255, 255, 0.7);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.guide-title {
+  font-family: var(--font-serif-en);
+  font-size: clamp(1.6rem, 4vw, 2.4rem);
+  color: var(--color-black);
+  letter-spacing: 0.02em;
+}
+
+.guide-text {
+  font-family: var(--font-serif-jp);
+  font-size: 1rem;
+  line-height: 1.9;
+  color: var(--color-text);
+  max-width: 760px;
+}
+
 /* ==================== Sections Base ==================== */
 .section {
   padding: var(--spacing-xl) 0;
@@ -308,7 +356,7 @@ h4 {
 
 /* ==================== Concept - 斜めレイアウト ==================== */
 .concept {
-  background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-cream) 100%);
+  background: linear-gradient(135deg, var(--color-off-white) 0%, #f2f0eb 100%);
   position: relative;
   overflow: hidden;
 }
@@ -485,7 +533,7 @@ h4 {
 
 /* ==================== Story - 優雅なアニメーション ==================== */
 .story {
-  background: linear-gradient(180deg, var(--color-cream) 0%, #EAE7E0 100%);
+  background: linear-gradient(180deg, var(--color-off-white) 0%, #f0eee8 100%);
   position: relative;
   overflow: hidden;
   min-height: 100vh;
@@ -718,7 +766,7 @@ h4 {
 
 /* ==================== Reviews - マガジンスタイル ==================== */
 .works {
-  background: linear-gradient(180deg, #EAE7E0 0%, var(--color-off-white) 100%);
+  background: linear-gradient(180deg, #f2f0eb 0%, var(--color-off-white) 100%);
   position: relative;
 }
 
@@ -1034,10 +1082,10 @@ h4 {
   padding-bottom: 2rem;
 }
 
-.footer-logo {
-  font-family: var(--font-serif-en);
-  font-size: 1.5rem;
-  color: var(--color-off-white);
+.footer-logo img {
+  height: 90px;
+  width: auto;
+  display: block;
 }
 
 .footer-info p {
@@ -1095,7 +1143,12 @@ h4 {
   }
 
   :root {
-    --header-height: 72px;
+    --header-height: 64px;
+  }
+
+  .hero {
+    margin-top: calc(-1 * var(--dynamic-header-height, var(--header-height)));
+    padding-top: var(--dynamic-header-height, var(--header-height));
   }
 
   .reviews-grid {
@@ -1103,11 +1156,11 @@ h4 {
   }
 
   .header {
-    padding: 1rem 1.5rem;
+    padding: 0.9rem 1.25rem;
   }
 
   .header.scrolled {
-    padding: 0.75rem 1.5rem;
+    padding: 0.65rem 1.25rem;
   }
 
   .header-nav {
@@ -1116,10 +1169,12 @@ h4 {
 
   .hamburger {
     display: flex;
+    height: 52px;
   }
 
   .header-logo {
     z-index: 102;
+    height: 48px;
   }
 
   .concept-inner {
