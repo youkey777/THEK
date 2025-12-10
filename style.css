@@ -63,7 +63,7 @@ main {
 .loader-logo {
   height: 60px;
   width: auto;
-  filter: sepia(1) saturate(3) hue-rotate(5deg) brightness(0.9);
+  filter: invert(68%) sepia(50%) saturate(500%) hue-rotate(5deg) brightness(1.1);
 }
 
 /* Typography */
@@ -220,7 +220,7 @@ h4 {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  margin-top: calc(-1 * var(--header-height));
+  margin-top: calc(-1 * var(--header-height) - 7px);
   padding-top: 0;
 }
 
@@ -1184,7 +1184,7 @@ h4 {
   }
 
   .hero {
-    margin-top: calc(-1 * var(--header-height));
+    margin-top: calc(-1 * var(--header-height) - 7px);
     padding-top: 0;
   }
 
