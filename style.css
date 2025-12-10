@@ -42,6 +42,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+main {
+  padding-top: var(--dynamic-header-height, var(--header-height));
+}
+
 /* Loader */
 .loader {
   position: fixed;
@@ -112,11 +116,11 @@ h4 {
 .header-logo {
   display: flex;
   align-items: center;
-  height: 64px;
+  height: 72px;
 }
 
 .header-logo img {
-  height: 64px;
+  height: 72px;
   width: auto;
   display: block;
 }
@@ -214,8 +218,8 @@ h4 {
   align-items: center;
   overflow: hidden;
   isolation: isolate;
-  margin-top: calc(-1 * var(--dynamic-header-height, var(--header-height)));
-  padding-top: var(--dynamic-header-height, var(--header-height));
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .hero-bg {
@@ -1174,12 +1178,12 @@ h4 {
   }
 
   :root {
-    --header-height: 80px;
+    --header-height: 93px;
   }
 
   .hero {
-    margin-top: calc(-1 * var(--dynamic-header-height, var(--header-height)));
-    padding-top: var(--dynamic-header-height, var(--header-height));
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .reviews-grid {
@@ -1200,12 +1204,19 @@ h4 {
 
   .hamburger {
     display: flex;
-    height: 52px;
+    height: 56px;
+    width: 56px;
+    align-items: center;
+    justify-content: center;
   }
 
   .header-logo {
     z-index: 102;
-    height: 48px;
+    height: 56px;
+  }
+
+  .header-logo img {
+    height: 56px;
   }
 
   .concept-inner {
@@ -1242,6 +1253,10 @@ h4 {
   .concept-english h2::after {
     left: 50%;
     transform: translateX(-50%);
+  }
+
+  .guide-visual {
+    max-width: 180px;
   }
 
   .story-content {
