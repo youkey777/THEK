@@ -61,7 +61,7 @@ main {
 }
 
 .loader-logo {
-  height: 60px;
+  height: 100px;
   width: auto;
   filter: invert(68%) sepia(50%) saturate(500%) hue-rotate(5deg) brightness(1.1);
 }
