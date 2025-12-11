@@ -1184,7 +1184,7 @@ h4 {
   }
 
   .hero {
-    margin-top: calc(-1 * var(--header-height) - 17px);
+    margin-top: calc(-1 * var(--header-height) - 27px);
     padding-top: 0;
   }
 
@@ -1220,7 +1220,7 @@ h4 {
   .header-logo {
     z-index: 102;
     height: 62px;
-    margin-top: 0;
+    margin-top: 5px;
   }
 
   .header-logo img {
