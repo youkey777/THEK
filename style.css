@@ -1180,7 +1180,7 @@ h4 {
   }
 
   :root {
-    --header-height: 93px;
+    --header-height: 83px;
   }
 
   .hero {
@@ -1198,11 +1198,11 @@ h4 {
   }
 
   .header {
-    padding: 0.9rem 1.25rem;
+    padding: 0.6rem 1.25rem;
   }
 
   .header.scrolled {
-    padding: 0.65rem 1.25rem;
+    padding: 0.45rem 1.25rem;
   }
 
   .header-nav {
@@ -1211,20 +1211,20 @@ h4 {
 
   .hamburger {
     display: flex;
-    height: 56px;
-    width: 56px;
+    height: 50px;
+    width: 50px;
     align-items: center;
     justify-content: center;
   }
 
   .header-logo {
     z-index: 102;
-    height: 68px;
-    margin-top: 6px;
+    height: 62px;
+    margin-top: 0;
   }
 
   .header-logo img {
-    height: 68px;
+    height: 62px;
   }
 
   .concept-inner {
