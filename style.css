@@ -1184,7 +1184,7 @@ h4 {
   }
 
   .hero {
-    margin-top: calc(-1 * var(--header-height) - 7px);
+    margin-top: calc(-1 * var(--header-height) - 17px);
     padding-top: 0;
   }
 
